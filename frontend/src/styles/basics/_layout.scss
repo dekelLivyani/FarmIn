@@ -1,0 +1,72 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: 2rem 1fr 2rem;
+
+    > * {
+        grid-column: 2;
+    }
+
+    > *.full {
+        grid-column: 1 / -1;
+    }
+}
+
+//CARD-GRID
+.simple-cards-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   grid-gap: 10px;
+   >*{
+      border-radius: 10px;
+      border:1px solid gray;
+      height: 300px;
+      padding: 10px;
+   }
+}
+
+//BUTTON
+.simple-button {
+   background: transparent;
+   color: black;
+   font-size: inherit;
+   font-family: inherit;
+   border: 0;
+   opacity: 0.65;
+   transition: 0.3s all;
+   padding: 0;
+   cursor: pointer;
+
+   &:disabled {
+       cursor: initial;
+       opacity: 0.2;
+   }
+
+   &:hover:not(:disabled) {
+       opacity: 1;
+   }
+}
+
+//FORM
+.simple-form {
+   display: flex;
+   flex-direction: column;
+   width: 300px;
+   margin: 15px auto;
+
+   &>*:not(:last-child) {
+       margin-bottom: 10px;
+   }
+
+   input:not([type="checkbox"]),
+   button {
+       padding: 5px 8px;
+       width: 100%;
+   }
+
+   .form-errors {
+       text-align: center;
+       margin-top: 24px;
+       color: red;
+       font-size: 15px;
+   }
+}

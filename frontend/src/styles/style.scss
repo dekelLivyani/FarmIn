@@ -1,0 +1,21 @@
+// SETUP
+@import 'setup/variables';
+@import 'setup/mixins';
+@import 'setup/functions';
+
+// BASICS
+@import 'basics/helpers';
+@import 'basics/base';
+@import 'basics/layout';
+@import 'basics/typography';
+
+//PAGES
+@import 'pages/app';
+@import 'pages/home';
+@import 'pages/itemEdit';
+@import 'pages/userProfile';
+
+// COMPONENTS
+@import 'cmps/AppHeader';
+@import 'cmps/ItemList';
+@import 'cmps/ItemPreview';

@@ -1,0 +1,79 @@
+.item-preview{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   &:hover{
+      .edit,.remove-item{
+         opacity:1;
+         transition: opacity .4s;
+      }
+   }
+   & .edit{
+      position:absolute;
+      top:5px;
+      right: 5px;
+      opacity:0;
+      transition: opacity .4s;
+   }
+   & .remove-item{
+      position:absolute;
+      top:5px;
+      left: 5px;
+      opacity:0;
+      transition: opacity .4s;
+      cursor: pointer;
+   }
+   & .img{
+      height: 130px;
+      width: 130px;
+      object-fit: contain;
+   }
+   & .item-count{
+      
+      background-color: #EEDB14;
+      padding: 5px;
+      height: 22px;
+      width: 22px;
+      text-align: center;
+      line-height: 0.9;
+      border-radius: 20px;
+      position: absolute;
+      top:115px;
+      right: 10px;
+   }
+   & .info{
+      width: 100%;
+      padding-top: 10px;
+      border-top: 1px solid gray;
+      text-align: end;
+      display: flex;
+      flex-direction: column;
+      gap:10px;
+      & .name{
+         font-weight: bold;
+         font-size: rem(25px);
+      }
+      & .price{
+         font-size: rem(18px);
+      }
+      & .weight{
+         font-size: rem(18px);
+         color:gray;         
+      }
+      & .buttons{
+         display: flex;
+         gap:20px;
+         justify-content: center;
+         & .btn-to-card{
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            line-height: 0.5;
+            & span{
+               font-size: 1.3rem;
+            }
+         }
+      }
+   }
+}
