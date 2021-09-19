@@ -16,11 +16,11 @@ export const useForm = (initialState, cb = () => { }) => {
          setFields(prevFields => ({ ...prevFields, addresses }))
       } else if (target.name === 'onSale' || target.name === 'salePercent') {
          const sale = JSON.parse(JSON.stringify(fields.sale));
-         sale[name] = (target.name === 'onSale')? !sale[name] : JSON.parse(value)
-
+         sale[name] = (target.name === 'onSale') ? !sale[name] : JSON.parse(value)
          setFields(prevFields => ({ ...prevFields, sale }))
+      // } else if (target.name === 'term') {
+      //    setFields(prevFields => ({ ...prevFields, [name]: value }))
       } else setFields(prevFields => ({ ...prevFields, [name]: value }))
-
    }
 
    return [

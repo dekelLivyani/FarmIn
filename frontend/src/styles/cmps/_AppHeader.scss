@@ -1,6 +1,6 @@
 .app-header{
    height: 70px;
-   background-color: rgba(151, 151, 151, 0.555);
+   background-color: rgba(148, 224, 76, 0.829);
    padding: 0 2rem;
    display: flex;
    align-items: center;
@@ -8,7 +8,7 @@
    position: relative;
    & .logo{
       position: absolute;
-      height: 75px;
+      height: 70px;
       width: 200px;
       top:0;
       left: 50%;
@@ -23,12 +23,23 @@
       display: flex;
       align-items: center;
       gap:8px;
+      & .auth{
+         background-color: rgb(242, 255, 238);
+         padding: 7px 14px;
+         width: 130px;
+         height: 50px;
+         border-radius: 30px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
       & .cart{
+         cursor: pointer;
          margin-left: 20px;
          display: flex;
          justify-content: space-between;
          align-items: center;
-         border:1px solid gray;
+         background-color: rgb(242, 255, 238);
          padding: 7px 14px;
          width: 130px;
          height: 50px;
@@ -45,15 +56,17 @@
             width: 17px;
             height:17px;
             position: absolute;
-            right: 29px;
+            right: 20px;
             bottom: 1px;
             font-size: rem(13px);
+            z-index: 1;
          }
          & .cart-icon{
-            // font-size: 2.2rem;
+            position: absolute;
+            top:0;
+            right: 5px;
             height: 48px; 
             width: 50px;
-            
          }
       }
    }

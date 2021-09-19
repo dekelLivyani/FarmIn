@@ -1,6 +1,7 @@
 .main-layout {
     display: grid;
     grid-template-columns: 2rem 1fr 2rem;
+    grid-template-rows: 70px 1fr;
 
     > * {
         grid-column: 2;
@@ -19,7 +20,7 @@
    >*{
       border-radius: 10px;
       border:1px solid gray;
-      height: 300px;
+      height: 260px;
       padding: 10px;
    }
 }

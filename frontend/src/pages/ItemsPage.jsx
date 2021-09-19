@@ -20,7 +20,7 @@ export const ItemsPage = () => {
       setItemsToShow(itemsToDisplay)
       dispatch(loadItems());
    }, [history.location.pathname, items.length])
-
+   
    return (
       <ItemList items={itemsToShow}></ItemList>
    )

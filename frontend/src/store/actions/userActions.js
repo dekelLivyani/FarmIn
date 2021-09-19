@@ -24,7 +24,7 @@ export function logout() {
    return async (dispatch) => {
       try {
          await userService.logout()
-         dispatch({ type: 'LOGOUT'})
+         dispatch({ type: 'LOGOUT' })
       } catch (err) {
          console.log('err', err)
       }
@@ -42,21 +42,53 @@ export function signup(user) {
       }
    }
 }
-export function updateCart(cart,item,deff) {
+export function updateCart(cart, item, deff) {
    return async (dispatch) => {
       try {
-         const newUser = await userService.updateCart(cart,item,deff)
+         const newUser = await userService.updateCart(cart, item, deff)
          dispatch({ type: 'UPDATE_USER', user: newUser })
       } catch (err) {
          console.log('err', err)
       }
    }
 }
+
+export function orderCart(cart) {
+   return async (dispatch) => {
+      try {
+         const newUser = await userService.orderCart(cart)
+         dispatch({ type: 'UPDATE_USER', user: newUser })
+      } catch (err) {
+         console.log('err', err)
+      }
+   }
+}
+
 export function update(user) {
    return async (dispatch) => {
       try {
          const newUser = await userService.update(user)
          dispatch({ type: 'UPDATE_USER', user: newUser })
+      } catch (err) {
+         console.log('err', err)
+      }
+   }
+}
+
+var setTimeId;
+export function setUserMsg(userMsg) {
+   return async (dispatch) => {
+      try {
+         if(setTimeId) clearTimeout(setTimeId);
+         dispatch({ type: 'SET_USERMSG', userMsg })
+         const msg = {
+            txt: '',
+            type: ''
+         }
+         setTimeId = setTimeout(() => {
+            dispatch({ type: 'SET_USERMSG', userMsg: msg })
+            clearTimeout(setTimeId)
+         }, 2500)
       } catch (err) {
          console.log('err', err)
       }

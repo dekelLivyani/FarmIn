@@ -2,6 +2,7 @@
 const dbService = require('../../services/db.service')
 const logger = require('../../services/logger.service')
 const ObjectId = require('mongodb').ObjectId
+const bcrypt = require('bcrypt')
 
 module.exports = {
    query,
@@ -82,8 +83,10 @@ async function update(user) {
          cart:user.cart,
          total:user.total
       }
-      if(user.password){
-         userToSave.password = user.password;
+      if (user.password) {
+         const saltRounds = 10
+         const hash = await bcrypt.hash(user.password, saltRounds)
+         userToSave.password = hash;
       }
       if(user.isAdmin){
          userToSave.isAdmin = user.isAdmin;

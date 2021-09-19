@@ -1,0 +1,57 @@
+.item-order-preview{
+   height: 100px;
+   align-items: center;
+   
+   background-color: #fff;
+   box-shadow: 0 3px 9px 1px rgb(172, 164, 164);
+   border-radius: 7px;
+   padding: 5px 10px;
+   width: 95%;
+   position: relative;
+   display: grid;
+   grid-template-columns: 100px 100px 1fr 100px;
+   & .img{
+      height: 70px;
+      width: 70px;
+      justify-self: center;
+   }
+   & .name{
+      font-size: 1.3rem;
+      justify-self: center;
+   }
+   & .price {
+      justify-self: center;
+   }
+   & .actions{
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap:10px;
+      & .btn-to-card{
+         width: 30px;
+         height: 30px;
+         padding: 0;
+         line-height: 0.5;
+         background-color: rgb(197, 196, 196);
+         border-radius: 15px;
+         border: 0;
+      }
+   }
+   & .delete-item{
+      position: absolute;
+      cursor: pointer;
+      font-size: 1.4rem;
+      top: 3px;
+      right: 3px;
+      opacity: 0;
+      background-color: rgb(126, 247, 126);
+      border-radius: 10px;
+      transition: opacity .5s;
+   }
+   &:hover{
+      .delete-item{
+         opacity: 1;
+         transition: opacity .5s;
+      }
+   }
+}

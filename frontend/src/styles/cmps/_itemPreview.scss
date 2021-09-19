@@ -8,13 +8,22 @@
          opacity:1;
          transition: opacity .4s;
       }
+      & .under-line{
+         & .item-count{
+            display: none;
+         }
+         & .actions{
+            display: flex;
+         }
+      }
    }
    & .edit{
       position:absolute;
       top:5px;
-      right: 5px;
+      left: 35px;
       opacity:0;
       transition: opacity .4s;
+      z-index: 1;
    }
    & .remove-item{
       position:absolute;
@@ -23,24 +32,62 @@
       opacity:0;
       transition: opacity .4s;
       cursor: pointer;
+      z-index: 1;
+   }
+   & .sale-img{
+      width: 66px;
+      position: absolute;
+      right: -18px;
+      top: 5px;
+      transform: rotateZ(45deg);
    }
    & .img{
       height: 130px;
       width: 130px;
       object-fit: contain;
    }
-   & .item-count{
-      
-      background-color: #EEDB14;
-      padding: 5px;
-      height: 22px;
-      width: 22px;
-      text-align: center;
-      line-height: 0.9;
-      border-radius: 20px;
+   & .under-line{
+      height: 25px;
       position: absolute;
-      top:115px;
-      right: 10px;
+      top:112px;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      & .item-count{
+         background-color: #EEDB14;
+         padding: 5px;
+         height: 25px;
+         width: 25px;
+         text-align: center;
+         line-height: 0.9;
+         border-radius: 20px;
+      }
+      & .actions{
+         display: none;
+         gap:5px;
+         align-items: center;
+         justify-content: center;
+         & .btn-to-card{
+            background-color: rgb(197, 196, 196);
+            border-radius: 15px;
+            border: 0;
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            line-height: 0.5;
+         }
+         & .item-count-inside{
+            font-weight: bold;
+         }
+      }
+      & .discount{
+         display: flex;
+         flex-direction: row-reverse;
+         color:red;
+      }
    }
    & .info{
       width: 100%;
@@ -56,24 +103,16 @@
       }
       & .price{
          font-size: rem(18px);
+         & span.sale-price{
+            text-decoration: line-through;
+         }
+         & .price-by-discount{
+            color:red;
+         }
       }
       & .weight{
          font-size: rem(18px);
          color:gray;         
-      }
-      & .buttons{
-         display: flex;
-         gap:20px;
-         justify-content: center;
-         & .btn-to-card{
-            width: 25px;
-            height: 25px;
-            padding: 0;
-            line-height: 0.5;
-            & span{
-               font-size: 1.3rem;
-            }
-         }
       }
    }
 }

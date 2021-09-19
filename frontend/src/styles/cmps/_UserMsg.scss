@@ -1,0 +1,22 @@
+.user-msg{
+   position: fixed;
+   bottom: 15px;
+   right: 10px;
+   height: 40px;
+   width: fit-content;
+   padding: 0px 12px;
+   font-size: 1.3rem;
+   border-radius: 5px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   z-index: 100;
+   gap:8px;
+   &.success{
+      background-color: rgb(201, 201, 201);
+   }
+   &.error{
+      background-color: rgb(255, 41, 41);
+      color:white;
+   }
+}

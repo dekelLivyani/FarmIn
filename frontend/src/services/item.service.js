@@ -57,6 +57,6 @@ const item1 = {
    sale: {
       onSale: false,
       salePercent: 10
-   }
-
+   },
+   img:''
 }

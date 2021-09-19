@@ -7,6 +7,7 @@ import loading from '../assets/imgs/loading.gif'
 import { useDispatch, useSelector } from "react-redux"
 import { saveItem } from "../store/actions/itemActions"
 import { useHistory, useParams } from "react-router-dom"
+import { setUserMsg } from "../store/actions/userActions"
 
 export const EditItem = () => {
    const history = useHistory();
@@ -34,11 +35,21 @@ export const EditItem = () => {
    }, [])
    const onSaveItem = async (ev) => {
       ev.preventDefault()
+      let msg = {};
       try {
          await dispatch(saveItem(item))
+         msg = {
+            txt: "item was successfully saved",
+            type: "success",
+          };
          history.goBack()
       } catch (err) {
-         console.log('err : cannot save item', err)
+         msg = {
+            txt: "Fail save item, try again later",
+            type: "error",
+          };
+      } finally {
+         await dispatch(setUserMsg(msg))
       }
    }
 
@@ -80,17 +91,17 @@ export const EditItem = () => {
          </section>
          <form className="form-edit simple-form" onSubmit={onSaveItem}>
             <label>
-               <span>Name:</span>
+               <span>שם:</span>
                <input type="text" value={item.name}
                   onChange={handleChange} name="name" placeholder="Name..." />
             </label>
             <label>
-               <span>Price:</span>
+               <span>מחיר:</span>
                <input type="number" value={item.price}
                   onChange={handleChange} name="price" placeholder="Price..." />
             </label>
             <label>
-               <span>Price By:</span>
+               <span>מחיר לפי:</span>
                <select name="priceBy" onChange={handleChange} value={item.priceBy}>
                   <option value="ליחידה">ליחידה</option>
                   <option value="למארז">למארז</option>
@@ -98,31 +109,31 @@ export const EditItem = () => {
                </select>
             </label>
             <label>
-               <span>Weight:</span>
+               <span>משקל:</span>
                <input type="number" value={item.weight}
                   onChange={handleChange} name="weight" placeholder="Weight..." />
             </label>
             <label>
-               <span>Type:</span>
+               <span>סוג:</span>
                <select name="type" onChange={handleChange} value={item.type}>
                   <option value="fruits">פירות</option>
                   <option value="vegetables">ירקות</option>
                </select>
             </label>
             <label>
-               <span>Info:</span>
+               <span>תוכן:</span>
                <input type="text" value={item.info}
                   onChange={handleChange} name="info" placeholder="Info..." />
             </label>
             <div className="sale">
-               <label htmlFor="sale">Sale:</label>
+               <label htmlFor="sale">הנחה:</label>
                <label className="switch">
                   <input id="sale" type="checkbox" value={item.sale.onSale}
                      onChange={handleChange} name="onSale" />
                   <div></div>
                </label>
                {item.sale.onSale &&
-                  <label>Percent: &nbsp;&nbsp;
+                  <label>אחוז: &nbsp;&nbsp;
                      <input type="number" value={item.sale.salePercent}
                         onChange={handleChange} name="salePercent" placeholder="Percent..." />
                   </label>
@@ -130,7 +141,7 @@ export const EditItem = () => {
             </div>
             <div className="img-container">
 
-               <span>Image upload: </span>
+               <span>תמונה: </span>
                {!isLoading && !item.img &&
                   <> <label htmlFor="upload-img">
                      <img className="img-upload" src={imgUpload} alt="" name="img-upload" />
@@ -138,7 +149,7 @@ export const EditItem = () => {
                         accept="image/png, image/gif, image/jpeg" hidden />
                   </label>
                      <input type="text" placeholder="URL" ref={imgUrl} />
-                     <button className="add-by-url" onClick={onUploadImg}>Add</button>
+                     <button className="add-by-url" onClick={onUploadImg}>הוסף</button>
                   </>
                }
                {isLoading && <img className="img-loading" src={loading} alt="" />}
@@ -151,7 +162,7 @@ export const EditItem = () => {
                   </div>
                }
             </div>
-            <button>Save</button>
+            <button>שמור</button>
          </form>
       </section>
    )

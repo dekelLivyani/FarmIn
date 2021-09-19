@@ -1,5 +1,5 @@
 import { httpService } from './http.service'
-import { utilService } from './util.service'
+import { utilService } from './util.service';
 
 export const userService = {
    login,
@@ -10,7 +10,8 @@ export const userService = {
    update,
    getLoggedinUser,
    getEmptyUser,
-   updateCart
+   updateCart,
+   orderCart
 }
 
 // window.userService = userService
@@ -20,52 +21,52 @@ export const userService = {
 // userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 100})
 
 async function getUsers() {
-   try{
+   try {
       return await httpService.get(`user`)
-   }catch(err){
+   } catch (err) {
       console.log('err: cannot get users', err);
    }
 }
 
 async function getById(userId) {
-   try{
+   try {
       return await httpService.get(`user/${userId}`)
-   }catch(err){
-      console.log('err: cannot get user',userId, err);
+   } catch (err) {
+      console.log('err: cannot get user', userId, err);
    }
 }
 
 async function update(user) {
-   try{
+   try {
       user = await httpService.put(`user/${user._id}`, user)
       //  Handle case in which admin updates other user's details
       if (getLoggedinUser()._id === user._id) return _saveLocalUser(user)
-   }catch(err){
-      console.log('err: cannot update user', user ,err);
+   } catch (err) {
+      console.log('err: cannot update user', user, err);
    }
 }
 
 async function login(userCred) {
-   try{
+   try {
       const user = await httpService.post('auth/login', userCred)
       if (user) return _saveLocalUser(user)
-   }catch(err){
+   } catch (err) {
       console.log('err: cannot login', err);
    }
 }
 async function signup(userCred) {
-   try{
+   try {
       const user = await httpService.post('auth/signup', userCred)
       return _saveLocalUser(user)
-   }catch(err){
+   } catch (err) {
       console.log('err: cannot signup', err);
    }
 }
 async function logout() {
-   try{
+   try {
       sessionStorage.clear()
       return await httpService.post('auth/logout')
-   }catch(err){
+   } catch (err) {
       console.log('err: cannot logout', err);
    }
 }
@@ -79,14 +80,39 @@ function getLoggedinUser() {
 }
 
 async function updateCart(cart, item, deff = 1) {
-   try{
+   try {
       const user = getLoggedinUser();
-      const totalPrice = (item.weight > 0)? item.price * item.weight * deff : item.price * deff 
-      user.total = (user.total + totalPrice < 0)? 0 : user.total + totalPrice;
+      if (item) {
+         let totalPrice = (item.weight > 0) ? item.price * item.weight * deff : item.price * deff
+         if (item.sale.onSale) {
+            if (totalPrice < 0) totalPrice = totalPrice * -1;
+            totalPrice = (totalPrice - (item.sale.salePercent / 100 * totalPrice)) * deff;
+         }
+         user.total = (user.total + totalPrice < 0) ? 0 : +(user.total + totalPrice);
+      }
+      if (!cart.length) user.total = 0;
       user.cart = cart;
-      return update(user)
-   }catch(err){
+      return await update(user)
+   } catch (err) {
       console.log('err: cannot update cart', err);
+   }
+}
+
+async function orderCart(cart) {
+   try {
+      const user = getLoggedinUser();
+      const CartToHistory = {
+         id: utilService.makeId(),
+         totalPrice: user.total,
+         date: Date.now(),
+         cart
+      }
+      user.historyCart.unshift(CartToHistory);
+      user.total = 0;
+      user.cart = [];
+      return await update(user)
+   } catch (err) {
+      console.log('err: cannot order cart', err);
    }
 }
 

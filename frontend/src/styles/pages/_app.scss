@@ -1,2 +1,16 @@
-.FarmIn-app{
+.App{
+   min-height: 100vh;
+   .dark-screen{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.726) !important;
+      z-index: 4 !important;
+      cursor: pointer;
+   }
+   & .full{
+      height: 60px;
+    }
+   & .FarmIn-app{
+   }
 }
