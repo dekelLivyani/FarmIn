@@ -3,14 +3,16 @@ import { Link } from "react-router-dom"
 import { ItemOrderList } from "./ItemOrderList"
 import loading from '../assets/imgs/loading2.gif'
 import { useState } from "react"
-// import { useHistory } from "react-router"
+import { useHistory } from "react-router"
 import { setUserMsg } from "../store/actions/userActions"
 import { useCart } from "../hooks/useCart"
+import cart from '../assets/imgs/cart.png'
+import { CartDisplay } from "./CartDisplay"
 
 export const MyOrder = ({ isOpen, closeMyOrder }) => {
    const { loggedInUser } = useSelector(state => state.userModule)
    const [isLoading, setIsLoading] = useState(false)
-   // const history = useHistory()
+   const history = useHistory()
    const [addToCart, removeFromCart, removeAllItems, cleanCart,completeOrder] = useCart()
    const dispatch = useDispatch()
 
@@ -44,7 +46,8 @@ export const MyOrder = ({ isOpen, closeMyOrder }) => {
       <section className={(isOpen) ? 'is-open my-order' : 'my-order'}>
          <main>
 
-         <header className="header-order">
+            <header className="header-order">
+               <CartDisplay isMyOrderPage={true}/>
             <section className="header-container" onClick={cleanCart}>
                <span className="material-icons-outlined icon">delete</span>
                <span>נקה עגלה</span>
@@ -54,7 +57,11 @@ export const MyOrder = ({ isOpen, closeMyOrder }) => {
             >close</span>
          </header>
 
-         {!loggedInUser && (<h1>Login please</h1>)}
+            {!loggedInUser && (<h1 className="text-center pointer"
+               onClick={() => {
+                  closeMyOrder();
+                  history.push('/login')
+               }}> התחבר בבקשה</h1>)}
          {loggedInUser && < section className="item-container">
 
                {loggedInUser.total > 0 &&

@@ -1,5 +1,9 @@
 .form-edit{
-
+   select{
+      padding: 4px 8px;
+      border-radius: 3px;
+      border:1px solid rgb(184, 184, 184);
+   }
    & .sale{
       display: flex;
       align-items: center;

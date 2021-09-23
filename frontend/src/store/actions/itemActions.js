@@ -22,10 +22,17 @@ export function getItemById(itemId) {
    return async (dispatch) => {
       try {
          const item = await itemService.getById(itemId)
+         console.log('item', item)
          dispatch({ type: 'SET_ITEM', item })
       } catch (err) {
          console.log('err', err)
       }
+   }
+}
+
+export function currItemToNull() {
+   return async (dispatch) => {
+      dispatch({ type: 'SET_ITEM', item: null })
    }
 }
 export function removeItem(itemId) {

@@ -1,0 +1,58 @@
+.home-page{
+   height: calc(100vh - 70px);
+   background-color: rgb(206, 250, 186);
+   position: relative;
+   padding-top: 10px;
+   // height: 100%;
+   & .add-item-btn{
+      background-color: rgb(123, 250, 123);
+      border-radius: 35px;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      position: absolute;
+      top:5%;
+      right:2%;
+   }
+   & .start-buy-btn{
+      padding: 15px 25px;
+      background-color: rgb(123, 250, 123);
+      border-radius: 35px;
+      position: absolute;
+      font-size: 2rem;
+      left:10%;
+      top:50%;
+      transform: translateY(-50%);
+   }
+   & .hero-container{
+      height: 450px;
+      height: 500px;
+      width: 500px;
+      margin: 0 auto;
+      position: relative;
+      & .txt-hero{
+         color:#393547;
+         font-size: 4rem;
+         font-family:'Lucida Sans Unicode', sans-serif;
+      }
+      & .hero{
+         height: 450px;
+         object-fit:contain;
+      }
+      & .fruit{
+         position: absolute;
+         bottom: 16%;
+         right:5%;
+      
+      }
+      & .vegetable{
+         position: absolute;
+         bottom: 16%;
+         left:3%;
+      }
+      & .fresh{
+         position: absolute;
+         bottom: -7%;
+         right:10%;
+      }
+   }
+}

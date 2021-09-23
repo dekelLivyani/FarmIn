@@ -24,7 +24,7 @@ function getRandomInt(min, max) {
 function debounce(func, wait = 1000) {
     let timeout;
     return function executedFunction(...args) {
-        const later = () => {
+       const later = () => {
             clearTimeout(timeout);
             func(...args);
         };

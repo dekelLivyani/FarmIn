@@ -1,5 +1,28 @@
 .recent-orders{
-   width: 450px;
-   // height: 70vh;
-   // overflow-y: auto;
+   display: flex;
+   justify-content: space-between;
+   & .left-side{
+      font-size: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      gap:20px;
+      & .order-select{
+         width: 230px;
+         font-size: 1rem;
+         display: inline-block;
+      }
+      & .total-price{
+         position: absolute;
+         margin-top: 120px;
+         background-color: rgb(104, 248, 116);
+         padding: 10px 20px;
+         border-radius: 15px;
+      }
+      & img{
+         width: 400px;
+         margin-top: 89px;
+      }
+   }
 }

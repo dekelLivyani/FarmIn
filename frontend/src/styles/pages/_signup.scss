@@ -1,0 +1,25 @@
+.form-signup{
+   direction: rtl;
+   display: flex;
+   gap:100px;
+   justify-content: space-around;
+   & .part1{
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap:18px;
+      & .full-name{
+         display: flex;
+         gap:15px;
+      }
+   }
+   & .part2{
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap:18px;
+   }
+   .sub-title{
+      font-size: 2rem;
+   }
+}

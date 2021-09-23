@@ -28,6 +28,8 @@
 .m5 { margin: 5px; }
 .m10 { margin: 10px; }
 .m20 { margin: 20px; }
+.mb20 { margin-bottom: 20px; }
+.mt20 { margin-top: 10px; }
 
 // Normalize Background
 .normBackground {
@@ -35,7 +37,7 @@
    background-position: center;
    background-size: cover;
 }
-
+.pointer{ cursor: pointer;}
 // Aspect ratios
 .ratio-16-9 { @include aspect-ratio(100, 56); }
 .ratio-square { @include aspect-ratio(100, 100); }

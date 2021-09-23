@@ -3,6 +3,7 @@
    flex-direction: column;
    align-items: center;
    position: relative;
+   cursor: pointer;
    &:hover{
       .edit,.remove-item{
          opacity:1;
@@ -71,13 +72,18 @@
          align-items: center;
          justify-content: center;
          & .btn-to-card{
-            background-color: rgb(197, 196, 196);
             border-radius: 15px;
             border: 0;
             width: 25px;
             height: 25px;
             padding: 0;
             line-height: 0.5;
+            background-color: rgb(233, 233, 233);
+            transition: background-color .3s;
+            &:hover{
+               background-color: rgb(161, 255, 107);
+               transition: background-color .3s;
+            }
          }
          & .item-count-inside{
             font-weight: bold;

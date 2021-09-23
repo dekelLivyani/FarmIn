@@ -7,19 +7,19 @@ export const useForm = (initialState, cb = () => { }) => {
       // eslint-disable-next-line
    }, [fields])
 
-   const handleChange = ({ target }) => {
-      var name = target.name
-      var value = target.type === 'number' ? +target.value : target.value
-      if (target.name === 'city' || target.name === 'street' || target.name === 'number') {
+   const handleChange = (ev) => {
+      let el;
+      el = (ev.target) ? ev.target : ev.current.refs.input;
+      var { name } = el;
+      var value = el.type === 'number' ? +el.value : el.value
+      if (name === 'city' || name === 'street' || name === 'number') {
          const addresses = JSON.parse(JSON.stringify(fields.addresses));
          addresses[name] = value;
          setFields(prevFields => ({ ...prevFields, addresses }))
-      } else if (target.name === 'onSale' || target.name === 'salePercent') {
+      } else if (name === 'onSale' || name === 'salePercent') {
          const sale = JSON.parse(JSON.stringify(fields.sale));
-         sale[name] = (target.name === 'onSale') ? !sale[name] : JSON.parse(value)
+         sale[name] = (name === 'onSale') ? !sale[name] : JSON.parse(value)
          setFields(prevFields => ({ ...prevFields, sale }))
-      // } else if (target.name === 'term') {
-      //    setFields(prevFields => ({ ...prevFields, [name]: value }))
       } else setFields(prevFields => ({ ...prevFields, [name]: value }))
    }
 

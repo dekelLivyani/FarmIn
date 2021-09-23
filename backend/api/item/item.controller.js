@@ -1,13 +1,9 @@
 const logger = require('../../services/logger.service')
-const userService = require('../user/user.service')
-const socketService = require('../../services/socket.service')
 const itemService = require('./item.service')
 
 async function getItems(req, res) {
    try {
       const items = await itemService.query(req.query)
-      //  const items = await itemService.query()
-      //  console.log('items', items)
       res.send(items)
    } catch (err) {
       logger.error('Cannot get items', err)
@@ -49,21 +45,7 @@ async function updateItem(req, res) {
 async function addItem(req, res) {
    try {
       var item = req.body
-      //   item.byUserId = req.session.user._id
       item = await itemService.add(item)
-
-      // prepare the updated item for sending out
-      //   var user = await userService.getById(item.byUserId)
-      //   item.aboutUser = await userService.getById(item.aboutUserId)
-
-      // Give the user credit for adding a item
-      //   const fullUser = await userService.getById(user._id)
-
-      //   console.log('CTRL SessionId:', req.sessionID);
-      //   socketService.broadcast({type: 'item-added', data: item, userId: item.byUserId})
-      //   socketService.emitToUser({type: 'item-about-you', data: item, userId: item.aboutUserId})
-      //   socketService.emitTo({type: 'user-updated', data: fullUser, label: fullUser._id})
-
       res.send(item)
 
    } catch (err) {

@@ -29,7 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 const authRoutes = require('./api/auth/auth.routes')
 const userRoutes = require('./api/user/user.routes')
 const itemRoutes = require('./api/item/item.routes')
-const {connectSockets} = require('./services/socket.service')
 
 // routes
 const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
@@ -38,7 +37,6 @@ app.all('*', setupAsyncLocalStorage)
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/item', itemRoutes)
-connectSockets(http, session)
 
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with

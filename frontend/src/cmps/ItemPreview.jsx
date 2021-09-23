@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { loadItems, removeItem as deleteItem } from "../store/actions/itemActions"
+import { getItemById, loadItems, removeItem as deleteItem } from "../store/actions/itemActions"
 import { useCart } from "../hooks/useCart";
 import sale from '../assets/imgs/sale.png'
 
@@ -17,6 +17,10 @@ export const ItemPreview = ({ item }) => {
       else setItemCount(0)
    }, [loggedInUser?.cart])
 
+   const openDetails = () => {
+      dispatch(getItemById(item._id))
+   }
+
    const removeItem = async () => {
       try {
          await dispatch(deleteItem(item._id))
@@ -26,17 +30,24 @@ export const ItemPreview = ({ item }) => {
       }
    }
    const priceAfterDiscount = () => {
-      return item.price - (item.sale.salePercent / 100 * item.price);
+      return (item.price - (item.sale.salePercent / 100 * item.price)).toFixed(2);
    }
 
    return (
-      <section className="item-preview">
+      <section className="item-preview" onClick={openDetails}>
          {loggedInUser?.isAdmin && <>
-            <Link to={"/items/edit/" + item._id} className="edit">
+            <Link to={"/items/edit/" + item._id} onClick={(ev) => {
+               ev.stopPropagation();
+            }}
+               className="edit">
                <span className="material-icons-outlined">edit</span>
             </Link>
             <span className="material-icons-outlined remove-item"
-               onClick={removeItem}>delete</span>
+               onClick={(ev) => {
+                  ev.stopPropagation();
+                  removeItem();
+               }}
+            >delete</span>
          </>
          }
          {item.sale.onSale && <img src={sale} className="sale-img" alt="" />}
@@ -45,11 +56,17 @@ export const ItemPreview = ({ item }) => {
             {itemCount > 0 && <span className="item-count">{itemCount}</span>}
 
             {loggedInUser && <div className="actions">
-               <button className="btn-to-card" onClick={addToCart}>
+               <button className="btn-to-card" onClick={(ev) => {
+                  ev.stopPropagation();
+                  addToCart()
+               }}>
                   <span className="material-icons-outlined">add</span>
                </button>
-              <span className="item-count-inside">{itemCount}</span>
-               <button className="btn-to-card" onClick={removeFromCart}>
+               <span className="item-count-inside">{itemCount}</span>
+               <button className="btn-to-card" onClick={(ev) => {
+                  ev.stopPropagation();
+                  removeFromCart()
+               }}>
                   <span className="material-icons-outlined">remove</span>
                </button>
             </div>}
@@ -64,7 +81,7 @@ export const ItemPreview = ({ item }) => {
             <div className="flex j-end price">
                <span> {item.priceBy} &nbsp;/</span>
                {item.sale.onSale && <span className="price-by-discount">
-                  &nbsp; ₪ {priceAfterDiscount().toFixed(2)} &nbsp; </span>}
+                  &nbsp; ₪ {priceAfterDiscount()} &nbsp; </span>}
                <span className={(item.sale.onSale) ? 'sale-price' : ''}>
                   &nbsp;₪ {item.price}</span>
             </div>

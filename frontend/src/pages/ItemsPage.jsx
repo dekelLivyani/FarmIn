@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ItemList } from '../cmps/ItemList';
 import { useHistory } from 'react-router-dom';
 
-export const ItemsPage = () => {
+export const ItemsPage = (children) => {
    const { items } = useSelector(state => state.itemModule)
    const [itemsToShow, setItemsToShow] = useState(items)
    const history = useHistory()

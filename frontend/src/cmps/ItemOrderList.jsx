@@ -1,6 +1,6 @@
 import { ItemOrderPreview } from "./ItemOrderPreview"
-import { useForm } from "../hooks/useForm"
 import { useEffect, useState } from "react"
+import { ItemFilter } from "./ItemFilter";
 
 export const ItemOrderList = ({ cart, isRecentOrder }) => {
    const [currCart, setCurrCart] = useState(cart);
@@ -15,16 +15,14 @@ export const ItemOrderList = ({ cart, isRecentOrder }) => {
       })
       setCurrCart(cartToDisplay)
    }
-   const [filterBy, handleChange] = useForm({ term: '' }, onChangeFilter)
-
    return (
       <>
-         <input type="text" name="term" className="searchItem" value={filterBy.term}
-            placeholder="Search..." onChange={handleChange} />
+         <ItemFilter onChangeFilter={onChangeFilter}/>
          <section className="item-order-list">
-            {currCart.map(item => (
+            {currCart.length > 0 && currCart.map(item => (
                <ItemOrderPreview key={item.id} fullItem={item} isRecentOrder={isRecentOrder} />
             ))}
+            {!currCart.length && <h2> לא נמצאו פריטים </h2>}
          </section>
       </>
    )

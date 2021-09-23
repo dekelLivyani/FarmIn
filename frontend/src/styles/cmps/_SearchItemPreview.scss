@@ -1,0 +1,73 @@
+.search-item-preview{
+   display: flex;
+   flex-direction: column;
+   background-color: #fff;
+   border-radius: 5px;
+   padding: 10px;
+   height: fit-content;
+   cursor: pointer;
+   position: relative;
+   .search-container{
+      display: flex;
+      justify-content:flex-end;
+      gap:40px;
+      align-items: center;
+      width: 320px;
+      & .info{
+         text-align: end;
+         display: flex;
+         flex-direction: column;
+         gap:10px;
+         & .name{
+            font-weight: bold;
+            font-size: rem(25px);
+         }
+         & .price{
+            font-size: rem(18px);
+         }
+         & .weight{
+            font-size: rem(18px);
+            color:gray;         
+         }
+      }
+      & img{
+         height: 100px;
+         width: 100px;
+      }
+      & .btn-to-detail{
+         position: absolute;
+         top:5px;
+         left:2px;
+         border:0;
+         background-color: unset;
+         & span{
+            font-size: 1.7rem;
+            color:rgb(80, 192, 58);
+         }
+      }
+   }
+   & .actions{
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap:20px;
+      & .btn-to-card{
+         border-radius: 15px;
+         border: 0;
+         width: 25px;
+         height: 25px;
+         padding: 0;
+         line-height: 0.5;
+         background-color: rgb(233, 233, 233);
+         transition: background-color .3s;
+         &:hover{
+            background-color: rgb(161, 255, 107);
+            transition: background-color .3s;
+         }
+      }
+      & .count{
+         font-weight: bold;
+      }
+   }
+}

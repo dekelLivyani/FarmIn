@@ -2,7 +2,7 @@ const INITIAL_STATE = {
    items: [],
    currItem: null,
    filterBy: {
-      type: ''
+      name:''
    }
 }
 export function itemReducer(state = INITIAL_STATE, action) {

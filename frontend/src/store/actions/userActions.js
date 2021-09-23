@@ -75,11 +75,40 @@ export function update(user) {
    }
 }
 
+export function signupAsGuest() {
+   return async (dispatch) => {
+      try {
+         const guestName = "guest" + Date.now() % 1000;
+         const user = {
+            fname: guestName,
+            lname: guestName,
+            username: guestName,
+            password: 123123,
+            email: `${guestName}@gmail.com`,
+            phone: 0,
+            addresses: {
+               city: '',
+               street: '',
+               number: 0,
+            },
+            historyCart: [],
+            cart: [],
+            total: 0
+         }
+         const newUser = await userService.signup(user)
+         dispatch({ type: 'SIGNUP', user: newUser })
+         dispatch({ type: 'LOGIN', loggedInUser: newUser })
+      } catch (err) {
+         console.log('err', err)
+      }
+   }
+}
+
 var setTimeId;
 export function setUserMsg(userMsg) {
    return async (dispatch) => {
       try {
-         if(setTimeId) clearTimeout(setTimeId);
+         if (setTimeId) clearTimeout(setTimeId);
          dispatch({ type: 'SET_USERMSG', userMsg })
          const msg = {
             txt: '',
