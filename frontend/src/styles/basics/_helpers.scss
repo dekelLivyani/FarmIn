@@ -10,6 +10,10 @@
    &.wrap { flex-wrap: wrap; }
    &.s-between { justify-content: space-between; }
    &.s-around { justify-content: space-around; }
+   &.gap5 { gap:5px }
+   &.gap10 { gap:10px }
+   &.gap15 { gap:15px }
+   &.gap20 { gap:20px }
    &.auto-center {
        justify-content: center;
        align-items: center;

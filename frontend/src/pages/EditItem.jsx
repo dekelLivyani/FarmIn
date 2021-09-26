@@ -3,7 +3,7 @@ import { useForm } from "../hooks/useForm"
 import { itemService } from "../services/item.service"
 import { uploadImg } from "../services/img-upload.service"
 import imgUpload from '../assets/imgs/upload.png'
-import loading from '../assets/imgs/loading.gif'
+import loading from '../assets/imgs/loading1.gif'
 import { useDispatch, useSelector } from "react-redux"
 import { saveItem } from "../store/actions/itemActions"
 import { useHistory, useParams } from "react-router-dom"
@@ -14,11 +14,11 @@ export const EditItem = () => {
    const history = useHistory();
    const params = useParams();
    const initialState = itemService.getEmptyItem();
-   const [item, handleChange, setItem] = useForm(initialState)
+   const [item, handleChange, setItem, handleValidation] = useForm(initialState)
    const { loggedInUser } = useSelector(state => state.userModule)
    const dispatch = useDispatch();
    const [isLoading, setIsLoading] = useState(false)
-   const imgUrl = useRef(null)
+   const [errors, setErrors] = useState({})
 
    const name = useRef()
    const price = useRef()
@@ -26,6 +26,7 @@ export const EditItem = () => {
    const info = useRef()
    const onSale = useRef()
    const salePercent = useRef()
+   const imgUrl = useRef(null)
 
    useEffect(() => {
       if (!loggedInUser.isAdmin) history.push('/');
@@ -40,16 +41,23 @@ export const EditItem = () => {
       }
       loadItem()
    }, [])
+
    const onSaveItem = async (ev) => {
+      const { formIsValid, errors: errorsMap } = handleValidation()
+      setErrors(errorsMap);
+      console.log('formIsValid', formIsValid)
+      console.log('errors', errors)
       ev.preventDefault()
       let msg = {};
       try {
-         await dispatch(saveItem(item))
-         msg = {
-            txt: "item was successfully saved",
-            type: "success",
-         };
-         history.goBack()
+         if (formIsValid) {
+            await dispatch(saveItem(item))
+            msg = {
+               txt: "item was successfully saved",
+               type: "success",
+            };
+            history.goBack()
+         }
       } catch (err) {
          msg = {
             txt: "Fail save item, try again later",
@@ -76,7 +84,7 @@ export const EditItem = () => {
          res = await uploadImg(ev)
          newItem.img = res.url;
       } else {
-         res = imgUrl.current.value
+         res = imgUrl.current.refs.input.value
          newItem.img = res;
       }
       try {
@@ -87,88 +95,122 @@ export const EditItem = () => {
          setIsLoading(false)
       }
    }
-
    if (!item) return <section>Loading...</section>
    return (
-      <section className="edit-page">
+      <form className="form-edit simple-form" onSubmit={onSaveItem}>
          <section className="actions">
             <span onClick={history.goBack} className="simple-button back">
                <span className="material-icons-outlined">arrow_back</span>
             </span>
          </section>
-         <form className="form-edit simple-form" onSubmit={onSaveItem}>
+         <section className="part1">
             <label>
-               <span>שם:</span>
+               <section>
+                  <span><span className="valid">* </span> שם:</span>
+                  <span className="valid"> {errors["name"]}</span>
+               </section>
                <Input type="text" value={item.name} ref={name}
-                  onChange={() => { handleChange(name) }} name="name" placeholder="Name..." />
+                  onChange={() => { handleChange(name) }} name="name"/>
             </label>
             <label>
-               <span>מחיר:</span>
+               <section>
+                  <span><span className="valid">* </span> מחיר:</span>
+                  <span className="valid"> {errors["price"]}</span>
+               </section>
                <Input type="number" value={item.price} ref={price}
-                  onChange={() => { handleChange(price) }} name="price" placeholder="Price..." />
+                  onChange={() => { handleChange(price) }} name="price" />
             </label>
             <label>
-               <span>מחיר לפי:</span>
+               <section>
+                  <span><span className="valid">* </span> מחיר לפי:</span>
+                  <span className="valid"> {errors["priceBy"]}</span>
+               </section>
                <select name="priceBy" onChange={handleChange} value={item.priceBy}>
+                  <option value="לקילו">לקילו</option>
                   <option value="ליחידה">ליחידה</option>
                   <option value="למארז">למארז</option>
-                  <option value="לקילו">לקילו</option>
                </select>
             </label>
-            <label>
-               <span>משקל:</span>
-               <Input type="number" value={item.weight} ref={weight}
-                  onChange={() => { handleChange(weight) }} name="weight" placeholder="Weight..." />
-            </label>
-            <label>
-               <span>סוג:</span>
-               <select name="type" onChange={handleChange} value={item.type}>
-                  <option value="fruits">פירות</option>
-                  <option value="vegetables">ירקות</option>
-               </select>
-            </label>
-            <label>
-               <span>תוכן:</span>
-               <Input type="text" value={item.info} ref={info}
-                  onChange={() => { handleChange(info) }} name="info" placeholder="Info..." />
-            </label>
+            {item.priceBy === 'לקילו' && <>
+               <section>
+                  <label>
+                     <span>משקל:</span>
+                     <section className="flex a-center gap5">
+                        <Input type="number" value={item.weight} ref={weight}
+                           onChange={() => { handleChange(weight) }} name="weight" />
+                        <span>ק"ג</span>
+                     </section>
+                  </label>
+               </section>
+            </>}
+
             <div className="sale">
                <label htmlFor="sale">הנחה:</label>
                <Switch onText="" offText="" name="onSale" ref={onSale}
                   value={item.sale.onSale} onChange={() => { handleChange(onSale) }}>
                </Switch>
                {item.sale.onSale &&
-                  <label>אחוז: &nbsp;&nbsp;
+                  <label className="sale-container" >
+                     <span className="percent"> אחוז: &nbsp;&nbsp; </span>
                      <Input type="number" value={item.sale.salePercent} ref={salePercent}
-                        onChange={() => { handleChange(salePercent) }} name="salePercent" placeholder="Percent..." />
+                        onChange={() => { handleChange(salePercent) }} name="salePercent"/>
                   </label>
                }
             </div>
-            <div className="img-container">
 
-               <span>תמונה: </span>
+            <label>
+               <section>
+                  <span><span className="valid">* </span> סוג:</span>
+                  <span className="valid"> {errors["type"]}</span>
+               </section>
+               <select name="type" onChange={handleChange} value={item.type}>
+                  <option value="fruits">פירות</option>
+                  <option value="vegetables">ירקות</option>
+               </select>
+            </label>
+         </section>
+
+         <section className="part2">
+            <label className="flex column">
+               <section>
+                  <span><span className="valid">* </span> תוכן:</span>
+                  <span className="valid"> {errors["info"]}</span>
+               </section>
+               <textarea name="info" className="info" cols="30" rows="10" ref={info}
+                  value={item.info} onChange={() => { handleChange(info) }}>
+               </textarea>
+            </label>
+
+            <div className="flex column gap10">
+               <label htmlFor="img-url">
+                  <section>
+                     <span><span className="valid">* </span> תמונה: </span>
+                     <span className="valid"> {errors["img"]}</span>
+                  </section>
+               </label>
                {!isLoading && !item.img &&
-                  <> <label htmlFor="upload-img">
-                     <img className="img-upload" src={imgUpload} alt="" name="img-upload" />
-                     <input className="Input-file" type="file" id="upload-img" onChange={onUploadImg}
-                        accept="image/png, image/gif, image/jpeg" hidden />
-                  </label>
-                     <Input type="text" placeholder="URL" ref={imgUrl} />
+                  <section className="img-container">
+                     <label htmlFor="img-upload">
+                        <img className="img-upload" src={imgUpload} alt="" name="img-upload" />
+                        <input className="Input-file" type="file" name="img-upload" id="img-upload" onChange={onUploadImg}
+                           accept="image/png, image/gif, image/jpeg" hidden />
+                     </label>
+                     <Input type="text" placeholder="URL" id="img-url" ref={imgUrl} />
                      <button className="add-by-url" onClick={onUploadImg}>הוסף</button>
-                  </>
+                  </section>
                }
                {isLoading && <img className="img-loading" src={loading} alt="" />}
 
                {item.img &&
                   <div className="res-img-container">
-                     <img className="res-img" src={item.img} alt="" />
+                     <img className="res-img" src={item.img} alt="" name="img" />
                      <span className="material-icons-outlined remove-img"
                         onClick={removeImg}>close</span>
                   </div>
                }
             </div>
-            <button>שמור</button>
-         </form>
-      </section>
+            <button className="save-item-btn">שמור</button>
+         </section>
+      </form>
    )
 }

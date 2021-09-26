@@ -13,6 +13,7 @@ export const ItemDetail = ({ item }) => {
    const close = () => {
       dispatch(currItemToNull())
    }
+   
    const addItemToCart = () => {
       if (loggedInUser) addToCart();
       else {

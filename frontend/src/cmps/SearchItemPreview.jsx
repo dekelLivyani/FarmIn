@@ -33,7 +33,7 @@ export const SearchItemPreview = ({ item }) => {
                ev.stopPropagation();
                openDetails()
             }}>
-               <span class="material-icons-outlined">info</span>
+               <span className="material-icons-outlined">info</span>
             </button>}
             <div className="info">
                <h2 className="name">{item.name}</h2>

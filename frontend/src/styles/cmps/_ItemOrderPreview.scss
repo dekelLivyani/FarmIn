@@ -6,15 +6,15 @@
    box-shadow: 0 3px 9px 1px rgb(172, 164, 164);
    border-radius: 7px;
    padding: 5px 10px;
-   width: 95%;
-   width: 490px;
+   max-width: 490px;
+   min-width: 350px;
    position: relative;
    display: grid;
-   grid-template-columns: 100px 100px 1fr 100px;
+   grid-template-columns: 65px 100px 1fr 100px;
+   gap:20px;
    & .img{
       height: 70px;
       width: 70px;
-      justify-self: center;
    }
    & .name{
       font-size: 1.3rem;

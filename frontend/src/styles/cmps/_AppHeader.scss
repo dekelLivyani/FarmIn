@@ -1,7 +1,7 @@
 .app-header{
    height: 70px;
    background-color: rgba(148, 224, 76, 0.829);
-   padding: 0 2rem;
+   padding: 0 15px;
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -14,46 +14,119 @@
       left: 50%;
       transform: translateX(-50%);
    }
-   & .nav-side{
-      display: flex;
-      align-items: center;
-      gap:20px;
-   }
    & .nav-side-auth{  
       display: flex;
       align-items: center;
       gap:10px;
-      & .auth{
-         background-color: rgb(242, 255, 238);
-         padding: 7px 14px;
-         width: 130px;
-         height: 50px;
-         border-radius: 30px;
-         display: flex;
-         justify-content: center;
-         align-items: center;
+      & .login-btn{
+         cursor: pointer;
       }
-      .search{
-         background-color: rgb(242, 255, 238);
-         border-radius: 30px;
-         display: flex;
-         flex-direction: row-reverse;
-         align-items: center;
-         padding: 0 10px;
-         height: 50px;
-         input{
-            background-color: rgb(242, 255, 238);
-            width: 200px;
-            border-radius: 20px;
-            padding: 10px;
-            outline: none;
-            border:0;
-            font-size: 1.2rem;
+      & .auth-in-header{
+         @media (max-width:900px) {
+            display: none;
+         }
+      }
+      & .search-icon{
+         height: 30px;
+         width: 50px;
+      }
+      & .search-popup{ 
+         position: absolute;
+         left:0;
+         top:70px;
+         height: fit-content;
+         padding: 10px 5px;
+         background-color: rgb(228, 228, 228);
+         border: 2px solid rgb(190, 190, 190);
+         border-radius: 3px;
+         z-index: 3;
+         & .search{
+            background-color: rgb(187, 187, 187);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            padding: 0 10px;
+            height: 50px;
+            width: 330px;
+            margin: 0 auto 10px;
+            & input{
+               background-color: rgb(187, 187, 187);
+               width: 300px;
+               border-radius: 20px;
+               padding: 10px;
+               outline: none;
+               border:0;
+               font-size: 1.2rem;
+               text-align: right;
+            }
+            & img{
+               height: 30px;
+            }
+         }
+      }
+   }
+   & .nav-side, .nav-in-header{
+      display: flex;
+      align-items: center;
+      gap:20px;
+      & .auth-in-side{
+         display: none;
+         & .close-btn{
+            font-size: 1.7rem;
+            cursor: pointer;  
+         }
+         @media (max-width:900px) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+         }
+      }
+      @media (max-width:900px) {
+         .nav-in-header{
+            display: none;
+         }
+         .nav-link{
+            font-size: 1.5rem;
+            width: 100%;
             text-align: right;
+            height: 50px;
+            border-bottom: 20px;
+            line-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap:10px;
+            & .img-nav{
+               height: 40px;
+               width: 40px;
+               object-fit: contain;
+            }            
          }
-         img{
-            height: 30px;
+         .nav-link:not(:last-child){
+            border-bottom: 1px solid gray;
          }
+         &:first-child(){
+            margin-bottom: 20px;
+         }
+         position: fixed;
+         top:0;
+         right:0;
+         background-color: rgb(236, 236, 236);
+         height: 100vh;
+         width: 250px;
+         z-index: 4;
+         flex-direction: column;
+         padding: 10px;
+         align-items: flex-end;
+         gap:0;
+      }
+   }
+   & .menu-btn{
+      display: none;
+      @media (max-width:900px) {
+         display: inline-block;
       }
    }
 }

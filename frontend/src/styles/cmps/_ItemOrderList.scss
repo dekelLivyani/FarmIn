@@ -5,4 +5,7 @@
    gap:10px;
    max-height: 400px;
    overflow-y: auto;
+   display: grid;
+   // grid-template-rows:repeat(auto-fit 1fr);
+   padding: 10px;
 }

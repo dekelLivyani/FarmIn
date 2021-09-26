@@ -1,0 +1,56 @@
+.login-popup{
+   .form-login{
+      border:1px solid rgb(204, 204, 204);
+      border-radius: 5px;
+      padding: 35px;
+      width: 350px;
+      margin: auto;
+      margin-top: 70px;
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -100%);
+      background-color: #fff;   
+      z-index: 5;
+      & .close{
+         position: absolute;
+         top:5px;
+         right:5px;
+         cursor: pointer;
+      }
+      & .title{
+         text-align: center;
+         font-size: 2rem;
+         margin: 0 0 20px;
+         color:rgb(92, 92, 92);
+      }
+      & input{
+         padding: 0;
+         border:0;
+         height: 30px;
+         font-size: 1rem;
+         border-bottom: 1px solid gray;
+         outline: none;
+         line-height: 40px;
+         margin-bottom:30px;
+      }
+      & .btn-login{
+         border:0;
+         font-size: 1.4rem;
+         align-self: center;
+         background-color:lightgreen;
+         border-radius: 4px;
+         padding: 5px 10px;
+      }
+      & .to-signup{
+         margin-top: 5px;
+         font-size: 1.1rem;
+         margin-bottom: 0px;
+      }
+      & .form-errors{
+         position: absolute;
+         bottom: 10px;
+         font-size: 1.1rem;
+      }
+   }
+}

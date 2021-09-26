@@ -66,33 +66,37 @@ async function remove(userId) {
 
 async function update(user) {
    try {
+      const { username, fname, lname, email, phone } = user
       // peek only updatable fields!
       const userToSave = {
          _id: ObjectId(user._id),
-         username: user.username,
-         fname: user.fname,
-         lname: user.lname,
-         email: user.email,
-         phone: user.phone,
+         username,
+         fname,
+         lname,
+         email,
+         phone,
          addresses: {
             city: user.addresses.city,
             street: user.addresses.street,
             number: user.addresses.number
          },
-         historyCart:user.historyCart,
-         cart:user.cart,
-         total:user.total
+         historyCart: user.historyCart,
+         cart: user.cart,
+         total: user.total
       }
       if (user.password) {
          const saltRounds = 10
-         const hash = await bcrypt.hash(user.password, saltRounds)
+         hash = await bcrypt.hash(user.password, saltRounds)
          userToSave.password = hash;
       }
-      if(user.isAdmin){
+      if (user.isAdmin) {
          userToSave.isAdmin = user.isAdmin;
       }
       const collection = await dbService.getCollection('user')
       await collection.updateOne({ '_id': userToSave._id }, { $set: userToSave })
+      if (user.password) {
+         delete userToSave.password
+      }
       return userToSave;
    } catch (err) {
       logger.error(`cannot update user ${user._id}`, err)
@@ -115,9 +119,9 @@ async function add(user) {
             street: user.addresses.street,
             number: user.addresses.number
          },
-         historyCart:user.historyCart,
-         cart:user.cart,
-         total:user.total
+         historyCart: user.historyCart,
+         cart: user.cart,
+         total: user.total
       }
       const collection = await dbService.getCollection('user')
       await collection.insertOne(userToAdd)

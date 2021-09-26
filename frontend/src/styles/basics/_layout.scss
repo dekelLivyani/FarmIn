@@ -51,14 +51,15 @@
 
 //FORM
 .simple-form {
-   direction: rtl;
-   display: flex;
-   flex-direction: column;
-   width: 300px;
-   margin: 15px auto;
-
-   &>*:not(:last-child) {
-       margin-bottom: 10px;
+   &>*{
+      direction: rtl;
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin: 30px auto;
+      
+      &>*:not(:last-child) {
+      margin-bottom: 10px;
    }
 
    input:not([type="checkbox"]),
@@ -68,9 +69,9 @@
    }
 
    .form-errors {
-       text-align: center;
-       margin-top: 24px;
-       color: red;
+      text-align: center;
+      color: red;
        font-size: 15px;
+      }
    }
 }

@@ -1,0 +1,122 @@
+.form-edit{
+   position: relative;
+   display: flex;
+   flex-direction: row-reverse;
+   width: 800px;
+   margin: 0 auto;
+   background-color: rgb(228, 228, 228);
+   border:2px solid rgb(211, 211, 211);
+   border-radius: 8px;
+   & .actions{
+      position: absolute;
+      top:-25px;
+      left: 5px;
+      width: fit-content;
+   }
+   & select{
+      padding: 4px 8px;
+      border-radius: 3px;
+      border:1px solid rgb(184, 184, 184);
+   }
+   & .part1{
+      & label{
+         display: flex;
+         flex-direction: column;
+         gap:5px;
+         align-items: flex-start;
+         justify-content: flex-start;
+      }
+      & .double-in-line{
+         display: flex;
+         gap:15px;
+      }
+      & input[name="weight"]{
+         width: 100px;
+      }
+      & .sale{
+         display: flex;
+         align-items: center;
+         gap:10px;
+         height: 30px;
+         & .sale-container{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            & .percent{
+               line-height: 1px;
+               margin-left: 10px;
+            }
+            & input[name="salePercent"]{
+               width: 70px;
+               height: 25px;
+            }
+         }
+      } 
+   }
+   & .part2{
+      & label{
+         display: flex;
+         flex-direction: column;
+         gap:5px;
+         align-items: flex-start;
+         justify-content: flex-start;
+      }
+      & .info{
+         resize: none;
+         border-radius: 5px;
+         padding: 7px;
+         outline: none;
+         font-size: 1rem;
+      }
+      & .img-container{
+         display: flex;
+         align-items: center;
+         gap:10px;
+         & .img-upload{
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+         }
+         & .add-by-url{
+            border:0;
+            border-radius: 3px;
+            background-color: rgb(145, 252, 145);
+            transition: background-color .3s;
+            height: 33px;
+            font-size: 1.1rem;
+            &:hover{
+               background-color: rgb(114, 252, 114); 
+               transition: background-color .3s;
+            }
+         }
+      }
+      & .img-loading{
+         height: 100px;
+         width: 100px;
+      }
+      & .res-img-container{
+         position: relative;
+         & .res-img{
+            height: 100px;
+            width: 100px;
+         }
+         & .remove-img{
+            position: absolute;
+            right: 0;
+            top:0;
+            cursor: pointer;
+         }
+      } 
+   }
+   & .save-item-btn{
+      border:0;
+      border-radius: 3px;
+      background-color: rgb(84, 152, 255);
+      height: 40px;
+      color:black;
+      font-size: 1.3rem;
+   }
+   & .valid{
+      color:red;
+   }
+}

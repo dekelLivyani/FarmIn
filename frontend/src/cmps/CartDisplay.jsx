@@ -29,7 +29,7 @@ export const CartDisplay = ({ openMyOrder = () => { }, isMyOrderPage = false }) 
                : "cart"}
          onClick={openMyOrder}>
          <span className="cart-total">
-            {(loggedInUser) ? (loggedInUser.total).toFixed(2) : 0}₪
+            {(loggedInUser) ? (loggedInUser.total).toFixed(2) : '0.00'}₪
          </span>
          <div>
             <span className="cart-count">

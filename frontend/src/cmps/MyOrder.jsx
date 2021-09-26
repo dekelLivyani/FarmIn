@@ -6,7 +6,6 @@ import { useState } from "react"
 import { useHistory } from "react-router"
 import { setUserMsg } from "../store/actions/userActions"
 import { useCart } from "../hooks/useCart"
-import cart from '../assets/imgs/cart.png'
 import { CartDisplay } from "./CartDisplay"
 
 export const MyOrder = ({ isOpen, closeMyOrder }) => {

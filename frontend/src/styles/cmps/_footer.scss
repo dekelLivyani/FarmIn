@@ -1,0 +1,92 @@
+footer{
+   color:rgb(70, 70, 70);
+   height: 125px;
+   padding: 15px;
+   background-color: rgba(148, 224, 76, 0.829);
+   background-color: #ebebeb;
+   display: flex;
+   align-content: center;
+   gap:105px;
+   @media (max-width:600px) {
+      height: 100px;
+   }
+   & .content{
+      width: 70vw;
+      display: flex;
+      justify-content: space-between;
+      & .left-side{
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         & .copy-right{
+            font-size: 1.5rem;
+            @media (max-width:600px) {
+               font-size: 1.3rem;
+               text-align: center;
+            }
+         }
+         & .social-media{
+            display: flex;
+            gap:10px;
+            @media (max-width:600px) {
+               align-items: center;
+               justify-content: center;
+            }
+            & .icon-media{
+               height: 50px;
+               width: 50px;
+               cursor: pointer;
+            }
+         }
+         @media (max-width:600px) {
+             width: 100%;
+             gap:7px;
+         }
+      }
+      & .middle-side{
+         font-size: 1.3rem;
+         display: flex;  
+         margin-right: 100px;
+         gap:10px;
+         flex-direction: column;
+         & >*{
+            letter-spacing: 1px;
+         }
+         & .email{
+            color:rgb(0, 0, 0);
+         }
+         @media (max-width:1030px) {
+            margin-right: 0;
+         }
+         @media (max-width:600px) {
+           display: none;
+         }
+      }
+      @media (max-width:1030px) {
+         width: 100%;
+      }
+   }
+   & .right-side{
+      width:30vw;
+      position:relative;
+      .orange-gif{
+         height: 110px;
+         width: 170px;
+         position: absolute;
+         animation: orange-move 6s linear infinite;
+      }
+      @media (max-width:1030px) {
+         display: none;
+      }
+   }
+}
+
+@keyframes orange-move{
+   0%{
+      right: -30px;
+   }
+   100%{
+      right: 100%;
+   }
+ 
+}

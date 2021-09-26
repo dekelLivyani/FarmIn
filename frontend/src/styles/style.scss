@@ -12,13 +12,14 @@
 //PAGES
 @import 'pages/app';
 @import 'pages/home';
-@import 'pages/itemEdit';
+@import 'pages/editItem';
 @import 'pages/userProfile';
 @import 'pages/signup';
 
 // COMPONENTS
 @import 'cmps/AppHeader';
 @import 'cmps/ItemList';
+@import 'cmps/Login';
 @import 'cmps/ItemPreview';
 @import 'cmps/MyOrder';
 @import 'cmps/ItemOrderList';
@@ -30,3 +31,5 @@
 @import 'cmps/SearchItemPreview';
 @import 'cmps/SearchItemList';
 @import 'cmps/ItemDetail';
+@import 'cmps/auth';
+@import 'cmps/footer';

@@ -34,7 +34,7 @@ function getEmptyItem() {
    return {
       name: '',
       price: 0,
-      priceBy: 'ליחידה',
+      priceBy: 'לקילו',
       weight:'',
       type: 'fruits',
       info: '',

@@ -23,8 +23,8 @@ export const Home = ({ setToFullscreen }) => {
    return (
       <section className="home-page full">
          {loggedInUser?.isAdmin && <Link className="add-item-btn" to="/items/edit">הוסף פריט</Link>}
-         <Link className="start-buy-btn" to="/items"
-            onClick={onSignUpAsGuest} >התחל כאן</Link>
+         {!loggedInUser && <Link className="start-buy-btn" to="/items"
+            onClick={onSignUpAsGuest} >התחל כאן</Link>}
          <div className="hero-container">
             <span className='txt-hero fruit'>פירות</span>
             <img className="hero" src={hero} alt="" />

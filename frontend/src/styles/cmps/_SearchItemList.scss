@@ -1,7 +1,7 @@
 .search-item-list{
-   position: absolute;
-   top:65px;
-   width: 360px;
+   // position: absolute;
+   // top:65px;
+   width: 350px;
    display: flex;
    border-radius: 4px;
    flex-direction: column;
@@ -10,6 +10,6 @@
    max-height: 400px;
    overflow-y: auto;
    background-color: rgb(228, 228, 228);
-   padding: 10px;
+   // padding: 10px;
    z-index: 3;
 }
