@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { useCart } from "../hooks/useCart"
-import { getItemById } from "../store/actions/itemActions"
+import { getItemById, loadItems, removeItem as deleteItem } from "../store/actions/itemActions"
 
 export const SearchItemPreview = ({ item }) => {
    const { loggedInUser } = useSelector(state => state.userModule)
@@ -14,6 +15,7 @@ export const SearchItemPreview = ({ item }) => {
          return (item.price - (item.sale.salePercent / 100 * item.price)).toFixed(2);
       } else return item.price;
    }
+
    const countInCart = () => {
       if (!loggedInUser) return 0;
       return loggedInUser.cart.reduce((acc, fullItem) => {
@@ -22,12 +24,36 @@ export const SearchItemPreview = ({ item }) => {
       }, 0)
    }
 
+   const removeItem = async () => {
+      try {
+         await dispatch(deleteItem(item._id))
+         dispatch(loadItems());
+      } catch (err) {
+         console.log('err : cannot remove item', err)
+      }
+   }
+
    const openDetails = () => {
       dispatch(getItemById(item._id))
    }
 
    return (
       <section className="search-item-preview" onClick={() => setIsItemOpen(!isItemOpen)}>
+         {loggedInUser?.isAdmin && <>
+            <Link to={"/items/edit/" + item._id} onClick={(ev) => {
+               ev.stopPropagation();
+            }}
+               className="edit">
+               <span className="material-icons-outlined">edit</span>
+            </Link>
+            <span className="material-icons-outlined remove-item"
+               onClick={(ev) => {
+                  ev.stopPropagation();
+                  removeItem();
+               }}
+            >delete</span>
+         </>
+         }
          <section className="search-container">
             {isItemOpen && <button className="btn-to-detail" onClick={(ev) => {
                ev.stopPropagation();
@@ -38,10 +64,19 @@ export const SearchItemPreview = ({ item }) => {
             <div className="info">
                <h2 className="name">{item.name}</h2>
 
-               <div className="flex j-end price">
+               {/* <div className="flex j-end price">
                   <span> {item.priceBy}&nbsp;/</span>
                   <span className="price"> &nbsp; ₪ {priceAfterDiscount()} </span>
+               </div> */}
+
+               <div className="flex j-end price">
+               <span> {item.priceBy} &nbsp;/</span>
+               {item.sale.onSale && <span className="price-by-discount">
+                  &nbsp; ₪ {priceAfterDiscount()} &nbsp; </span>}
+               <span className={(item.sale.onSale) ? 'sale-price' : ''}>
+                  &nbsp;₪ {item.price}</span>
                </div>
+               
                {item.weight > 0 && <p className="weight" > כ - {item.weight} ק"ג בממוצע</p>}
             </div>
             <img className="img" src={item.img} alt="" />

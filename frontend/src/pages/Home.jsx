@@ -22,15 +22,28 @@ export const Home = ({ setToFullscreen }) => {
 
    return (
       <section className="home-page full">
-         {loggedInUser?.isAdmin && <Link className="add-item-btn" to="/items/edit">הוסף פריט</Link>}
-         {!loggedInUser && <Link className="start-buy-btn" to="/items"
-            onClick={onSignUpAsGuest} >התחל כאן</Link>}
          <div className="hero-container">
-            <span className='txt-hero fruit'>פירות</span>
             <img className="hero" src={hero} alt="" />
-            <span className='txt-hero vegetable'>וירקות</span>
-            <span className='txt-hero fresh'>הכי טריים שיש</span>
+            <section className="hero-title">
+               <section className="food-container">
+                  <span className='txt-hero fruit'>פירות</span>
+                  <span className='txt-hero vegetable'>וירקות</span>
+               </section>
+               <p className='txt-hero fresh'>הכי טריים שיש</p>
+            </section>
          </div>
+
+         {loggedInUser?.isAdmin &&
+            <section className="add-item-container">
+            <Link className="add-item-btn" to="/items/edit">הוסף פריט</Link>
+            </section>
+         }
+         
+         {!loggedInUser && <section className="start-here-container">
+            <Link className="start-here-btn" to="/items"
+               onClick={onSignUpAsGuest} >התחל כאן</Link>
+            {/* <span>f</span> */}
+         </section>}
       </section>
    )
 }

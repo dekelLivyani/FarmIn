@@ -1,6 +1,9 @@
 .recent-orders{
    display: flex;
    justify-content: space-between;
+   @media (max-width:835px) {
+      flex-direction: column;
+   }
    & .left-side{
       font-size: 1.5rem;
       display: flex;
@@ -8,10 +11,26 @@
       align-items: center;
       margin: 0 auto;
       gap:20px;
+      @media (max-width:835px) {
+         flex-direction: row-reverse;
+         margin-bottom: 20px;
+      }
+      @media (max-width:485px) {
+         margin-top: 15px;
+         gap:15px;
+       }
+      & .my-order-txt{
+         @media (max-width:835px) {
+           display: none;
+         }
+      }
       & .order-select{
          width: 230px;
          font-size: 1rem;
          display: inline-block;
+         @media (max-width:455px) {
+            width: 200px;
+          }
       }
       & .total-price{
          position: absolute;
@@ -19,10 +38,25 @@
          background-color: rgb(104, 248, 116);
          padding: 10px 20px;
          border-radius: 15px;
+         @media (max-width:835px) {
+            position: relative;
+            margin-top: 0;
+         }
+         @media (max-width:455px) {
+            font-size: 1.3rem;
+            padding: 7px 14px;
+          }
       }
       & img{
          width: 400px;
          margin-top: 89px;
+         @media (max-width:835px) {
+            display: none;
+         }
       }
+   }
+   & .right-side{
+      width: fit-content;
+      margin: 0 auto;
    }
 }

@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/actions/userActions";
 import { Signup } from '../pages/Signup';
 import { RecentOrders } from '../cmps/RecentOrders';
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 
 export const UserProfile = () => {
+   const { loggedInUser } = useSelector(state => state.userModule)
    const dispatch = useDispatch()
    const history = useHistory()
 
@@ -21,11 +22,15 @@ export const UserProfile = () => {
    const onLogout = () => {
       dispatch(logout());
    }
-
+   const fullname = () => {
+      if (loggedInUser.fname.includes('Guest')) return loggedInUser.fname
+      else return loggedInUser.fname + ' ' + loggedInUser.lname
+   }
    return (
       <section className="user-profile">
          <aside>
-            <h1 className="title">:האיזור האישי</h1>   
+            <h1 className="title">:האיזור האישי</h1>
+            <h3 className="greet">שלום {fullname()}</h3>
             <nav className="nav-profile">
                <NavLink to="/user/profile/orders">
                <span className="txt"> ההזמנות שלי </span>

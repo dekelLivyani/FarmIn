@@ -50,7 +50,9 @@ export const App = () => {
    }
    const openLogin = () => {
       setIsLoginOpen(true);
-      setIsDarkScreen(true);
+      setTimeout(() => {
+         setIsDarkScreen(true);
+      }, 10);
    }
    
    const setDarkScreen = (deff) => {

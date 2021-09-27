@@ -28,8 +28,6 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
       }
    }
    const closeSearch = () => {
-      setItemsBySearch([])
-      setFilterBy(prevFilterBy => ({ ...prevFilterBy, name: '' }))
       setIsSearchOpen(false);
    }
 
@@ -51,11 +49,12 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
             <img src={searchImg} className="search-icon"
                onClick={openSearch} id="search-img1" />
 
-            {isSearchOpen && <section className="search-popup" ref={search}>
+            <section className={(isSearchOpen)? "search-popup search-open": "search-popup"} ref={search}>
+            <span className="material-icons-outlined close-search"
+                  onClick={closeSearch}>close</span>
                <section className="search" >
                   <input type="text" placeholder="חיפוש" value={filterBy.name}
                      name="name" id="search-name" onChange={handleChange} autoComplete="off" />
-                  <img src={searchImg} alt="" id="search-img" onClick={handleChange} />
                </section>
 
                {filterBy.name.length > 1 && itemsBySearch.length > 0 &&
@@ -63,7 +62,8 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
                {filterBy.name.length > 1 && itemsBySearch.length === 0 &&
                   <section className="search-item-list" style={{ 'left': styles?.left }} >
                      <h2>לא נמצאו תוצאות</h2></section>}
-            </section>}
+            </section>
+
             <section className="auth-in-header">
                <Auth openLogin={openLogin} />
             </section>
@@ -71,11 +71,15 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
             <CartDisplay openMyOrder={openMyOrder} />
          </div>
          <NavLink exact to="/"> <img className="logo" src={logo} alt="" /> </NavLink>
+         <section className="nav-in-header">
+            <NavLink className="nav-link" to="/items/fruits">פירות</NavLink>
+            <NavLink className="nav-link" to="/items/vegetables"> ירקות</NavLink>
+         </section>
 
-         {isMenuOpen && <div className="nav-side">
+         <div className={(isMenuOpen)? "nav-side menu-open": "nav-side"}>
             <section className="auth-in-side">
                <section onClick={toggleMenu}>
-               <Auth openLogin={openLogin} />
+                  <Auth openLogin={openLogin} />
                </section>
                <span className="material-icons-outlined close-btn" onClick={toggleMenu}
                >close</span>
@@ -88,7 +92,7 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
                ירקות
                <img className="img-nav" src={vegetables} alt="" />
             </NavLink>
-         </div>}
+         </div>
          <button className="menu-btn" onClick={toggleMenu}>
             <span className="material-icons-outlined">menu</span>
          </button>

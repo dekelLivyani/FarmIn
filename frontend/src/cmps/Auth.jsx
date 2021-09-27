@@ -8,7 +8,7 @@ export const Auth = ({openLogin}) => {
    return (
       <>
          {!loggedInUser && <div className="auth">
-            <span className="login-btn" onClick={openLogin}>התחברות</span>
+            <span className="login-btn pointer" onClick={openLogin}>התחברות</span>
             &nbsp;<span>/</span> &nbsp;
             <NavLink to="/signup"> הרשמה</NavLink>
          </div>}

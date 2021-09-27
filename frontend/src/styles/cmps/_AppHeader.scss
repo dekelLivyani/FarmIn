@@ -1,20 +1,30 @@
 .app-header{
+   @media (max-width:470px) {
+      padding: 0 5px;
+   }
    height: 70px;
-   background-color: rgba(148, 224, 76, 0.829);
+   background-color: rgb(160, 226, 98);
    padding: 0 15px;
    display: flex;
    align-items: center;
    justify-content: space-between;
    position: relative;
    & .logo{
+      @media (max-width:470px) {
+         width: 150px;
+      }
       position: absolute;
       height: 70px;
       width: 200px;
+      object-fit: contain;
       top:0;
       left: 50%;
       transform: translateX(-50%);
    }
-   & .nav-side-auth{  
+   & .nav-side-auth{ 
+      @media (max-width:470px) {
+         gap:0px;
+      } 
       display: flex;
       align-items: center;
       gap:10px;
@@ -29,17 +39,30 @@
       & .search-icon{
          height: 30px;
          width: 50px;
+         cursor: pointer;
       }
       & .search-popup{ 
          position: absolute;
-         left:0;
+         left:-370px;
          top:70px;
+         transition: left .5s;
          height: fit-content;
          padding: 10px 5px;
-         background-color: rgb(228, 228, 228);
          border: 2px solid rgb(190, 190, 190);
+         background-color: rgb(228, 228, 228);
          border-radius: 3px;
-         z-index: 3;
+         z-index: 2;
+         &.search-open{
+            left:0;
+            transition:left .5s;
+         }
+         & .close-search{
+               position: absolute;
+               top:0px;
+               right:0px;
+               cursor: pointer;
+               font-size: 1.7rem;
+         }
          & .search{
             background-color: rgb(187, 187, 187);
             border-radius: 30px;
@@ -48,11 +71,11 @@
             align-items: center;
             padding: 0 10px;
             height: 50px;
-            width: 330px;
+            width: 350px;
             margin: 0 auto 10px;
             & input{
                background-color: rgb(187, 187, 187);
-               width: 300px;
+               width: 1030px;
                border-radius: 20px;
                padding: 10px;
                outline: none;
@@ -66,32 +89,41 @@
          }
       }
    }
-   & .nav-side, .nav-in-header{
+   & .nav-in-header{
       display: flex;
       align-items: center;
       gap:20px;
-      & .auth-in-side{
-         display: none;
-         & .close-btn{
-            font-size: 1.7rem;
-            cursor: pointer;  
-         }
-         @media (max-width:900px) {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-         }
-      }
+      font-size: 1.3rem;
       @media (max-width:900px) {
-         .nav-in-header{
-            display: none;
+         display: none;
+      }
+   }
+   & .nav-side{
+      display: none;
+      position: relative;
+      right: -250px !important;
+      transition: right .6s;
+      @media (max-width:900px) {
+         display: inline-block;
+         &.menu-open{
+            right: 0 !important;
+            transition: right .6s;
          }
+         position: fixed;
+         top:0;
+         background-color: rgb(236, 236, 236);
+         height: 100vh;
+         width: 250px;
+         z-index: 4;
+         flex-direction: column;
+         padding: 10px;
+         align-items: flex-end;
+         gap:0;
          .nav-link{
             font-size: 1.5rem;
             width: 100%;
             text-align: right;
-            height: 50px;
+            height: 70px;
             border-bottom: 20px;
             line-height: 50px;
             display: flex;
@@ -110,20 +142,32 @@
          &:first-child(){
             margin-bottom: 20px;
          }
-         position: fixed;
-         top:0;
-         right:0;
-         background-color: rgb(236, 236, 236);
-         height: 100vh;
-         width: 250px;
-         z-index: 4;
-         flex-direction: column;
-         padding: 10px;
-         align-items: flex-end;
-         gap:0;
       }
+      & .auth-in-side{
+         display: none;
+         & .close-btn{
+            font-size: 1.7rem;
+            cursor: pointer;  
+         }
+         @media (max-width:900px) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+         }
+      }     
+   }
+   & .nav-in-header{
+      @media (max-width:900px) {
+         display: none;
+      }  
    }
    & .menu-btn{
+      background-color: unset;
+      border:0;
+      span {
+         font-size: 2.2rem;
+      }
       display: none;
       @media (max-width:900px) {
          display: inline-block;

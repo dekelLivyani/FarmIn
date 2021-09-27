@@ -7,12 +7,44 @@
    height: fit-content;
    cursor: pointer;
    position: relative;
+   &:hover{
+      .edit,.remove-item{
+         opacity:1;
+         transition: opacity .4s;
+      }
+      & .under-line{
+         & .item-count{
+            display: none;
+         }
+         & .actions{
+            display: flex;
+         }
+      }
+   }
+   & .edit{
+      position:absolute;
+      top:5px;
+      right: 35px;
+      opacity:0;
+      transition: opacity .4s;
+      z-index: 1;
+   }
+   & .remove-item{
+      position:absolute;
+      top:5px;
+      right: 5px;
+      opacity:0;
+      transition: opacity .4s;
+      cursor: pointer;
+      z-index: 1;
+   }
    & .search-container{
-      display: flex;
-      justify-content:flex-end;
-      gap:40px;
+      display: grid;
+      grid-template-columns: 1fr 100px;
       align-items: center;
-      width: 320px;
+      gap:30px;
+      min-width: 320px;
+      width: 100%;
       & .info{
          text-align: end;
          display: flex;
@@ -24,6 +56,12 @@
          }
          & .price{
             font-size: rem(18px);
+            & span.sale-price{
+               text-decoration: line-through;
+            }
+            & .price-by-discount{
+               color:red;
+            }
          }
          & .weight{
             font-size: rem(18px);
@@ -33,6 +71,7 @@
       & img{
          height: 100px;
          width: 100px;
+         object-fit: contain;
       }
       & .btn-to-detail{
          position: absolute;

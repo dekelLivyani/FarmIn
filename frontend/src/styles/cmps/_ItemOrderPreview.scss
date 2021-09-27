@@ -10,11 +10,12 @@
    min-width: 350px;
    position: relative;
    display: grid;
-   grid-template-columns: 65px 100px 1fr 100px;
+   grid-template-columns: 65px minmax(20px,100px) 100px 100px;
    gap:20px;
    & .img{
       height: 70px;
       width: 70px;
+      justify-self: center;
    }
    & .name{
       font-size: 1.3rem;

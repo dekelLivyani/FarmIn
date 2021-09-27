@@ -1,0 +1,23 @@
+.regular-list{
+   @media (max-width:485px) {
+      display: none;
+   }
+}
+
+.mobile-list{
+   display: none;
+   background-color: rgb(224, 224, 224);
+   width: 100%;
+   &>*{
+      width: 400px;
+      width: 90%;
+   }
+   @media (max-width:485px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap:10px;
+      padding: 10px 0;
+   }
+}

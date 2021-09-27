@@ -27,7 +27,7 @@ export const RecentOrders = () => {
                            new Date(orders.date).toLocaleString()
                      }
                   ))} />
-               &nbsp; :ההזמנות שלי
+              <span className="my-order-txt"> &nbsp; :ההזמנות שלי </span>
             </label>
             <h1 className="total-price">
                סה"כ:&nbsp;

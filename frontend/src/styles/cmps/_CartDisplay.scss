@@ -1,4 +1,7 @@
 .cart{
+   @media (max-width:615px){
+      width: 55px;
+   }
    cursor: pointer;
    display: flex;
    justify-content: space-between;
@@ -14,8 +17,12 @@
       cursor:auto
    }
    &.is-adding{
-      // background-color: red;
       animation: isAdding 1s linear 1;
+   }
+   & .cart-total{
+      @media (max-width:615px){
+         display: none;
+      }
    }
    & .cart-count{
       display: flex;

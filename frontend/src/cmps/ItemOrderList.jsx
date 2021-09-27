@@ -18,11 +18,11 @@ export const ItemOrderList = ({ cart, isRecentOrder }) => {
    return (
       <>
          <ItemFilter onChangeFilter={onChangeFilter}/>
-         <section className="item-order-list">
+         <section className={(isRecentOrder)? "item-order-list recent-order-page" : "item-order-list"}>
             {currCart.length > 0 && currCart.map(item => (
                <ItemOrderPreview key={item.id} fullItem={item} isRecentOrder={isRecentOrder} />
             ))}
-            {!currCart.length && <h2> לא נמצאו פריטים </h2>}
+            {!currCart.length && <h2 className="not-found"> לא נמצאו פריטים </h2>}
          </section>
       </>
    )

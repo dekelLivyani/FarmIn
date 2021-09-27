@@ -13,14 +13,14 @@ export const ItemDetail = ({ item }) => {
    const close = () => {
       dispatch(currItemToNull())
    }
-   
+
    const addItemToCart = () => {
       if (loggedInUser) addToCart();
       else {
          setShowLoginFirst(true)
          setTimeout(() => {
             setShowLoginFirst(false)
-         },5000)
+         }, 5000)
       }
    }
    const priceAfterDiscount = () => {
@@ -47,14 +47,13 @@ export const ItemDetail = ({ item }) => {
       <section className="item-detail">
          <span className="material-icons-outlined close"
             onClick={close}>close</span>
-
          {item.sale.onSale &&
             <>
                <img className="img-sale" src={sale} alt="" />
                <span className="discount">
                   &nbsp; {item.sale.salePercent}% <span>הנחה</span> </span>
             </>}
-
+    
          <div className="info">
             <h1 className="name">{item.name}</h1>
 

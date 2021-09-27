@@ -1,5 +1,6 @@
 .App{
    min-height: 100vh;
+
    .dark-screen{
       position: fixed;
       width: 100%;
@@ -10,5 +11,8 @@
    }
    & .FarmIn-app{
       min-height: 400px;
+      @media (max-width:485px) {
+         margin: 0 ;
+      }
    }
 }

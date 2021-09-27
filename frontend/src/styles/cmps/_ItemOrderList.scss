@@ -6,6 +6,14 @@
    max-height: 400px;
    overflow-y: auto;
    display: grid;
-   // grid-template-rows:repeat(auto-fit 1fr);
    padding: 10px;
+   &.recent-order-page{
+      overflow-y: unset;
+      max-height: unset;
+   }
+   & .not-found{
+      max-width: 490px;
+      min-width: 350px;
+      text-align: center;
+   }
 }

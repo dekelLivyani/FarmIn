@@ -3,8 +3,9 @@ import { loadItems } from '../store/actions/itemActions'
 import { useEffect, useState } from 'react';
 import { ItemList } from '../cmps/ItemList';
 import { useHistory } from 'react-router-dom';
+import { SearchItemPreview } from '../cmps/SearchItemPreview';
 
-export const ItemsPage = (children) => {
+export const ItemsPage = () => {
    const { items } = useSelector(state => state.itemModule)
    const [itemsToShow, setItemsToShow] = useState(items)
    const history = useHistory()
@@ -20,8 +21,17 @@ export const ItemsPage = (children) => {
       setItemsToShow(itemsToDisplay)
       dispatch(loadItems());
    }, [history.location.pathname, items.length])
-   
+
    return (
-      <ItemList items={itemsToShow}></ItemList>
+      <>
+         <section className="regular-list">
+            <ItemList items={itemsToShow} />
+         </section>
+         <section className="mobile-list">
+            {items.map(item => (
+               <SearchItemPreview item={item} key={item._id} />
+            ))}
+         </section>
+      </>
    )
 }
