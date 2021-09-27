@@ -28,7 +28,7 @@ export const ItemsPage = () => {
             <ItemList items={itemsToShow} />
          </section>
          <section className="mobile-list">
-            {items.map(item => (
+            {itemsToShow.map(item => (
                <SearchItemPreview item={item} key={item._id} />
             ))}
          </section>

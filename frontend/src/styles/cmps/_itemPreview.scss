@@ -108,7 +108,7 @@
          font-size: rem(25px);
       }
       & .price{
-         font-size: rem(18px);
+         font-size: 1rem;
          & span.sale-price{
             text-decoration: line-through;
          }
@@ -117,7 +117,7 @@
          }
       }
       & .weight{
-         font-size: rem(18px);
+         font-size: 1rem;
          color:gray;         
       }
    }

@@ -23,6 +23,7 @@ export const EditItem = () => {
    const name = useRef()
    const price = useRef()
    const weight = useRef()
+   const weightInfo = useRef()
    const info = useRef()
    const onSale = useRef()
    const salePercent = useRef()
@@ -110,7 +111,7 @@ export const EditItem = () => {
                   <span className="valid"> {errors["name"]}</span>
                </section>
                <Input type="text" value={item.name} ref={name}
-                  onChange={() => { handleChange(name) }} name="name"/>
+                  onChange={() => { handleChange(name) }} name="name" />
             </label>
             <label>
                <section>
@@ -120,29 +121,39 @@ export const EditItem = () => {
                <Input type="number" value={item.price} ref={price}
                   onChange={() => { handleChange(price) }} name="price" />
             </label>
-            <label>
-               <section>
-                  <span><span className="valid">* </span> מחיר לפי:</span>
-                  <span className="valid"> {errors["priceBy"]}</span>
-               </section>
-               <select name="priceBy" onChange={handleChange} value={item.priceBy}>
-                  <option value="לקילו">לקילו</option>
-                  <option value="ליחידה">ליחידה</option>
-                  <option value="למארז">למארז</option>
-               </select>
-            </label>
-            {item.priceBy === 'לקילו' && <>
-               <section>
+
+            <section className="priceBy-container double-in-line">
+               <label>
+                  <section>
+                     <span><span className="valid">* </span> מחיר לפי:</span>
+                     <span className="valid"> {errors["priceBy"]}</span>
+                  </section>
+                  <select name="priceBy" onChange={handleChange} value={item.priceBy}>
+                     <option value="לקילו">לקילו</option>
+                     <option value="ליחידה">ליחידה</option>
+                     <option value="למארז">למארז</option>
+                  </select>
+               </label>
+               {item.priceBy === 'לקילו' && <section>
                   <label>
-                     <span>משקל:</span>
+                     <span> משקל לחישוב:</span>
                      <section className="flex a-center gap5">
                         <Input type="number" value={item.weight} ref={weight}
                            onChange={() => { handleChange(weight) }} name="weight" />
                         <span>ק"ג</span>
                      </section>
                   </label>
+               </section>}
+            </section>
+
+            <label>
+               <section>
+                  <span>הערה למשקל</span>
                </section>
-            </>}
+               <Input type="text" value={item.weightInfo} ref={weightInfo}
+                  placeholder={`לדוגמה: כ - 5 ק"ג בממוצע`}
+                  onChange={() => { handleChange(weightInfo) }} name="weightInfo" />
+            </label>
 
             <div className="sale">
                <label htmlFor="sale">הנחה:</label>
@@ -153,7 +164,7 @@ export const EditItem = () => {
                   <label className="sale-container" >
                      <span className="percent"> אחוז: &nbsp;&nbsp; </span>
                      <Input type="number" value={item.sale.salePercent} ref={salePercent}
-                        onChange={() => { handleChange(salePercent) }} name="salePercent"/>
+                        onChange={() => { handleChange(salePercent) }} name="salePercent" />
                   </label>
                }
             </div>
@@ -164,6 +175,7 @@ export const EditItem = () => {
                   <span className="valid"> {errors["type"]}</span>
                </section>
                <select name="type" onChange={handleChange} value={item.type}>
+                  <option value="delis">מעדניה</option>
                   <option value="fruits">פירות</option>
                   <option value="vegetables">ירקות</option>
                </select>

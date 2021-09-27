@@ -33,30 +33,17 @@ function save(item) {
 function getEmptyItem() {
    return {
       name: '',
-      price: 0,
+      price: '',
       priceBy: 'לקילו',
       weight:'',
+      weightInfo:'',
       type: 'fruits',
       info: '',
       sale: {
          onSale: false,
-         salePercent: 0
+         salePercent: ''
       },
       img: '',
 
    }
-}
-
-const item1 = {
-   name: 'אבטיח',
-   price: 20,
-   priceBy: 'ליח\'',
-   weight:'כ-15 ק"ג ממוצע',
-   type: 'fruits',
-   info: '',
-   sale: {
-      onSale: false,
-      salePercent: 10
-   },
-   img:''
 }

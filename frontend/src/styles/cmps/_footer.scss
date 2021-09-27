@@ -7,6 +7,7 @@ footer{
    display: flex;
    align-content: center;
    gap:105px;
+   overflow-x: hidden;
    @media (max-width:600px) {
       height: 100px;
    }
@@ -71,8 +72,10 @@ footer{
       position:relative;
       .orange-gif{
          height: 110px;
+         height: 110px;
          width: 170px;
          position: absolute;
+         right: -30px;
          animation: orange-move 6s linear infinite;
       }
       @media (max-width:1030px) {

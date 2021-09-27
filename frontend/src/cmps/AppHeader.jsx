@@ -9,6 +9,8 @@ import { useForm } from '../hooks/useForm';
 import useOutsideClick from "../hooks/useOutSideClick";
 import { Auth } from "./Auth";
 import fruits from '../assets/imgs/fruits.png'
+import delis from '../assets/imgs/delis.png'
+import navImg from '../assets/imgs/nav-img.gif'
 import vegetables from '../assets/imgs/vegetables.gif'
 
 export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
@@ -49,8 +51,8 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
             <img src={searchImg} className="search-icon"
                onClick={openSearch} id="search-img1" />
 
-            <section className={(isSearchOpen)? "search-popup search-open": "search-popup"} ref={search}>
-            <span className="material-icons-outlined close-search"
+            <section className={(isSearchOpen) ? "search-popup search-open" : "search-popup"} ref={search}>
+               <span className="material-icons-outlined close-search"
                   onClick={closeSearch}>close</span>
                <section className="search" >
                   <input type="text" placeholder="חיפוש" value={filterBy.name}
@@ -72,11 +74,12 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
          </div>
          <NavLink exact to="/"> <img className="logo" src={logo} alt="" /> </NavLink>
          <section className="nav-in-header">
+            <NavLink className="nav-link" to="/items/delis"> מעדניה</NavLink>
             <NavLink className="nav-link" to="/items/fruits">פירות</NavLink>
             <NavLink className="nav-link" to="/items/vegetables"> ירקות</NavLink>
          </section>
 
-         <div className={(isMenuOpen)? "nav-side menu-open": "nav-side"}>
+         <div className={(isMenuOpen) ? "nav-side menu-open" : "nav-side"}>
             <section className="auth-in-side">
                <section onClick={toggleMenu}>
                   <Auth openLogin={openLogin} />
@@ -84,14 +87,20 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
                <span className="material-icons-outlined close-btn" onClick={toggleMenu}
                >close</span>
             </section>
-            <NavLink className="nav-link" onClick={toggleMenu} to="/items/fruits">
-               פירות
-               <img className="img-nav" src={fruits} alt="" />
-            </NavLink>
             <NavLink className="nav-link" onClick={toggleMenu} to="/items/vegetables">
                ירקות
                <img className="img-nav" src={vegetables} alt="" />
             </NavLink>
+            <NavLink className="nav-link" onClick={toggleMenu} to="/items/fruits">
+               פירות
+               <img className="img-nav" src={fruits} alt="" />
+            </NavLink>
+            <NavLink className="nav-link" onClick={toggleMenu} to="/items/delis">
+               מעדניה
+               <img className="img-nav" src={delis} alt="" />
+            </NavLink>
+            <img className="nav-img" src={navImg} alt="" />
+        
          </div>
          <button className="menu-btn" onClick={toggleMenu}>
             <span className="material-icons-outlined">menu</span>

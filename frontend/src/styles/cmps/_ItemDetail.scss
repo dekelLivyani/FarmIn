@@ -13,8 +13,7 @@
    align-items: center;
    gap:65px;
    grid-template-columns: 2fr 1fr;
-   overflow-y: auto; //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-   overflow-y-top:auto;
+   overflow-y:auto; //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
    border:2px solid rgb(92, 92, 92);
    @media (max-width:950px) {
       grid-template-rows: 200px 1fr;
@@ -34,24 +33,26 @@
       font-size: 2rem;
       cursor: pointer;
    }
-   & .img-sale{
-      height: 35px;
-      width: 100px;
+   & .sale-container{
       position: absolute;
-      top:0;
-      left:-30px;
-      transform: rotate(-45deg);
-   }
-   & .discount{
-      font-size: 1.3rem;
-      position: absolute;
-      top:27px;
-      left:-5px;
+      top:5px;
+      left:5px;
       display: flex;
-      flex-direction: row-reverse;
-      color:red;
-      transform: rotate(-45deg);
-      letter-spacing: 1px;
+      flex-direction: column;
+      align-items: center;
+      & .img-sale{
+         height: 35px;
+         object-fit: contain;
+         z-index: 12 !important;
+         width: 100px;
+      }
+      & .discount{
+         font-size: 1.3rem;
+         display: flex;
+         flex-direction: row-reverse;
+         color:red;
+         letter-spacing: 1px;
+      }
    }
    & .info{
       grid-column: 1/2;

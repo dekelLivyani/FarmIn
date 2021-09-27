@@ -47,12 +47,11 @@ export const ItemDetail = ({ item }) => {
       <section className="item-detail">
          <span className="material-icons-outlined close"
             onClick={close}>close</span>
-         {item.sale.onSale &&
-            <>
+         {item.sale.onSale && <section className="sale-container">
                <img className="img-sale" src={sale} alt="" />
                <span className="discount">
                   &nbsp; {item.sale.salePercent}% <span>הנחה</span> </span>
-            </>}
+            </section>}
     
          <div className="info">
             <h1 className="name">{item.name}</h1>
@@ -66,7 +65,7 @@ export const ItemDetail = ({ item }) => {
                      &nbsp;₪ {item.price}</span>
                </div>
                {item.weight > 0 && <p className="weight">
-                  (כ - {item.weight} ק"ג בממוצע)  </p>}
+                  ({item.weightInfo})  </p>}
             </div>
 
             <p className="info-txt">{item.info}</p>

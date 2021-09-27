@@ -76,9 +76,6 @@ function _buildCriteria(filterBy) {
    if (filterBy.type) {
       criteria.type = filterBy.type
    }
-   // if (filterBy.price) {
-   //    criteria.price = { $gte: +filterBy.price }
-   // }
    return criteria
 }
 

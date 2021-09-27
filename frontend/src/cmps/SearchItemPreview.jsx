@@ -64,11 +64,6 @@ export const SearchItemPreview = ({ item }) => {
             <div className="info">
                <h2 className="name">{item.name}</h2>
 
-               {/* <div className="flex j-end price">
-                  <span> {item.priceBy}&nbsp;/</span>
-                  <span className="price"> &nbsp; ₪ {priceAfterDiscount()} </span>
-               </div> */}
-
                <div className="flex j-end price">
                <span> {item.priceBy} &nbsp;/</span>
                {item.sale.onSale && <span className="price-by-discount">
@@ -77,7 +72,7 @@ export const SearchItemPreview = ({ item }) => {
                   &nbsp;₪ {item.price}</span>
                </div>
                
-               {item.weight > 0 && <p className="weight" > כ - {item.weight} ק"ג בממוצע</p>}
+               {item.weight > 0 && <p className="weight" >{item.weightInfo}</p>}
             </div>
             <img className="img" src={item.img} alt="" />
          </section>

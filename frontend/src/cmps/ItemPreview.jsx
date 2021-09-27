@@ -86,7 +86,7 @@ export const ItemPreview = ({ item }) => {
                   &nbsp;₪ {item.price}</span>
             </div>
 
-            {item.weight > 0 && <p className="weight" > כ - {item.weight} ק"ג בממוצע</p>}
+            {item.weight > 0 && <p className="weight" >{item.weightInfo}</p>}
          </div>
       </section>
    )
