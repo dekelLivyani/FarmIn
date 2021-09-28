@@ -19,6 +19,7 @@ export const CartDisplay = ({ openMyOrder = () => { }, isMyOrderPage = false }) 
          }, 1000)
       }
       setTotalPrice(loggedInUser?.total);
+           // eslint-disable-next-line
    }, [loggedInUser?.total])
 
    return (

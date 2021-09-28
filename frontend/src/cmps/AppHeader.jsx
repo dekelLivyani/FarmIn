@@ -15,7 +15,6 @@ import vegetables from '../assets/imgs/vegetables.gif'
 
 export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
    setIsMenuOpen, setDarkScreen }) => {
-   const { loggedInUser } = useSelector(state => state.userModule)
    const { items } = useSelector(state => state.itemModule)
    const [itemsBySearch, setItemsBySearch] = useState([])
    const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -38,7 +37,7 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
    }
 
    useOutsideClick(search, closeSearch)
-   const [filterBy, handleChange, setFilterBy] = useForm({ name: '' }, searchItem)
+   const [filterBy, handleChange] = useForm({ name: '' }, searchItem)
 
    const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
@@ -49,7 +48,7 @@ export const AppHeader = ({ openMyOrder, isHomePage, openLogin, isMenuOpen,
          <div className="nav-side-auth">
 
             <img src={searchImg} className="search-icon"
-               onClick={openSearch} id="search-img1" />
+               onClick={openSearch} id="search-img1" alt="" />
 
             <section className={(isSearchOpen) ? "search-popup search-open" : "search-popup"} ref={search}>
                <span className="material-icons-outlined close-search"

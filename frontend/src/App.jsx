@@ -6,7 +6,7 @@ import { ItemsPage } from "./pages/ItemsPage";
 import { Signup } from "./pages/Signup";
 import { UserProfile } from "./pages/UserProfile";
 import { MyOrder } from "./cmps/MyOrder";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { UserMsg } from "./cmps/UserMsg";
 import { useDispatch, useSelector } from "react-redux";
 import { currItemToNull, loadItems } from "./store/actions/itemActions";
