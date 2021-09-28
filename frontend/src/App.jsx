@@ -14,7 +14,6 @@ import { ItemDetail } from "./cmps/ItemDetail";
 import { Login } from "./cmps/Login";
 import { Footer } from "./cmps/Footer";
 
-// export default function App() {
 export const App = () => {
    const [isOrderOpen, setIsOrderOpen] = useState(false)
    const [isDarkScreen, setIsDarkScreen] = useState(false)
